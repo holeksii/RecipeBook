@@ -21,4 +21,7 @@ public class User
     
     [Url]
     public string? ImageUrl { get; set; }
+
+    public List<Recipe>? Recipes { get; set; }
+    public List<Like>? Likes { get; set; }
 }

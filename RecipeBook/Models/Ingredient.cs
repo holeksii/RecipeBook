@@ -2,15 +2,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RecipeBook.Models;
 
-class Ingridient
+public class Ingredient
 {
     [Key]
     public long Id { get; set; }
     
-    [MinLength(3)]
     [Required]
+    [MinLength(3)]
     public string? Name { get; set; }
     
+    [Required]
     [Range(0, 1000)]
     public int Quantity { get; set; }
     
