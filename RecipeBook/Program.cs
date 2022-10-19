@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using RecipeBook.Data;
+using RecipeBook.Models;
+
+
+RecipeBookDbContext context = new RecipeBookDbContext();
+
