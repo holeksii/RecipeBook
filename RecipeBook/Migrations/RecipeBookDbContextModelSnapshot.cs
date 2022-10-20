@@ -72,7 +72,7 @@ namespace RecipeBook.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("RecipeBook.Models.Like", b =>

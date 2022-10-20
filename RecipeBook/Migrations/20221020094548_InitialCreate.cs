@@ -70,7 +70,7 @@ namespace RecipeBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredients",
+                name: "Ingredient",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -82,9 +82,9 @@ namespace RecipeBook.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredients", x => x.Id);
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredients_Recipes_RecipeId",
+                        name: "FK_Ingredient_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id");
@@ -121,8 +121,8 @@ namespace RecipeBook.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_RecipeId",
-                table: "Ingredients",
+                name: "IX_Ingredient_RecipeId",
+                table: "Ingredient",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
@@ -147,7 +147,7 @@ namespace RecipeBook.Migrations
                 name: "Comment");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "Ingredient");
 
             migrationBuilder.DropTable(
                 name: "Like");
