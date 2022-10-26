@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 public class RecipeBookDbContext : DbContext
 {
-    public DbSet<User>? Users { get; set; }
-    public DbSet<Recipe>? Recipes { get; set; }
+    public DbSet<User> Users { get; set; } = default!;
+    public DbSet<Recipe> Recipes { get; set; } = default!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Database=RecipeBookDb;Username=postgres;Password=4");
+
 }
