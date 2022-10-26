@@ -26,7 +26,24 @@ public class Recipe
     public int TimeToCook { get; set; }
 
     [Required]
-    public List<Ingredient>? Ingredients { get; set; }
-    public List<Like>? Likes { get; set; }
-    public List<Comment>? Comments { get; set; }
+    public List<Ingredient> Ingredients { get; set; }
+    public List<Like> Likes { get; set; }
+    public List<Comment> Comments { get; set; }
+
+    public Recipe(string name, string imageUrl, string instructions, string category, int timeToCook)
+    {
+        Name = name;
+        ImageUrl = imageUrl;
+        Instructions = instructions;
+        Category = category;
+        TimeToCook = timeToCook;
+        Ingredients = new List<Ingredient>();
+        Likes = new List<Like>();
+        Comments = new List<Comment>();
+    }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Name: {Name}, ImageUrl: {ImageUrl}, Instructions: {Instructions}, Category: {Category}, TimeToCook: {TimeToCook}";
+    }
 }

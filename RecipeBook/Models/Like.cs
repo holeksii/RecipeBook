@@ -10,4 +10,14 @@ public class Like
     [Required]
     [DataType(DataType.DateTime)]
     public DateTime Time { get; set; }
+
+    public Like(DateTime time)
+    {
+        Time = time;
+    }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Time: {Time}";
+    }
 }

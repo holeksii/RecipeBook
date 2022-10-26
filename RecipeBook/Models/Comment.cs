@@ -12,4 +12,15 @@ public class Comment
     [Required]
     [DataType(DataType.DateTime)]
     public DateTime Time { get; set; }
+
+    public Comment(string text, DateTime time)
+    {
+        Text = text;
+        Time = time;
+    }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Text: {Text}, Time: {Time}";
+    }
 }

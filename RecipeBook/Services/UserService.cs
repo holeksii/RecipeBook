@@ -16,7 +16,6 @@ public class UserService
     {
         _dbContext.Users.Add(user);
         _dbContext.SaveChanges();
-
         return user;
     }
 
@@ -36,7 +35,6 @@ public class UserService
         {
             _dbContext.Remove(user);
             _dbContext.SaveChanges();
-
             return user;
         }
         return null;
@@ -48,7 +46,6 @@ public class UserService
         {
             _dbContext.Update(user);
             _dbContext.SaveChanges();
-
             return user;
         }
         return null;
