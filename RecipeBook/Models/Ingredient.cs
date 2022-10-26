@@ -17,4 +17,16 @@ public class Ingredient
     
     [RegularExpression(@"^(kg|g|l|ml|pcs)$")]
     public string? Measure { get; set; }
+
+    public Ingredient(string name, int quantity, string measure)
+    {
+        Name = name;
+        Quantity = quantity;
+        Measure = measure;
+    }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Name: {Name}, Quantity: {Quantity}, Measure: {Measure}";
+    }
 }
