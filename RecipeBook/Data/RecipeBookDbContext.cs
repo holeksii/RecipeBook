@@ -10,5 +10,4 @@ public class RecipeBookDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Database=RecipeBookDb;Username=postgres;Password=4");
-
 }
