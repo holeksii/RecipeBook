@@ -11,15 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using wpf.ViewModels;
 
-namespace wpf
+namespace wpf.Views
 {
     /// <summary>
-    /// Interaction logic for RecipesList.xaml
+    /// Interaction logic for SignUp.xaml
     /// </summary>
-    public partial class RecipesList : Window
+    public partial class SignUp : UserControl
     {
-        public RecipesList()
+        public SignUp()
         {
             InitializeComponent();
         }

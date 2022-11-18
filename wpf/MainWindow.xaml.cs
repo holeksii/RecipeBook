@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using wpf.ViewModels;
 
 namespace wpf
 {
@@ -23,7 +24,8 @@ namespace wpf
     {
         public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         //Theme Code ========================>
@@ -35,6 +37,11 @@ namespace wpf
         {
             base.OnMouseLeftButtonDown(e);
             DragMove();
+        }
+
+        private void loginUp_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace wpf
+namespace wpf.Views
 {
     /// <summary>
-    /// Interaction logic for SignUp.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class SignUp : Window
+    public partial class LoginView : UserControl
     {
-        public SignUp()
+        public LoginView()
         {
             InitializeComponent();
         }
