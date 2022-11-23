@@ -10,7 +10,7 @@ namespace wpf.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private BaseViewModel _selectedViewModel = new MainViewModel();
+        private BaseViewModel _selectedViewModel = new LoginViewModel();
         public BaseViewModel SelectedViewModel
         {
             get { return _selectedViewModel; }

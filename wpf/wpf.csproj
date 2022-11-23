@@ -12,4 +12,8 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecipeBook\RecipeBook.csproj" />
+  </ItemGroup>
+
 </Project>

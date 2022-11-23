@@ -28,6 +28,11 @@ public class UserService
     {
         return _dbContext.Find<User>(id);
     }
+    public User? GetUser(string usrName, string password)
+    {
+        return _dbContext.Users.FirstOrDefault(u => u.Username == usrName && u.Password == password);
+    }
+
 
     public User? DeleteUser(User user)
     {

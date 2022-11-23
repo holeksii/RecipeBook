@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace wpf.ViewModels
 {
-    internal class RegisterViewModel : BaseViewModel
+    public class RegisterViewModel : BaseViewModel
     {
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+     
     }
 }
