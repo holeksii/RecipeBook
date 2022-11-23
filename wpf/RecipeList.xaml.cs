@@ -13,15 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace wpf.Views;
-
-/// <summary>
-/// Interaction logic for LoginView.xaml
-/// </summary>
-public partial class LoginView : UserControl
+namespace wpf
 {
-    public LoginView()
+    /// <summary>
+    /// Interaction logic for RecipeList.xaml
+    /// </summary>
+    public partial class RecipeList : Window
     {
-        InitializeComponent();
+        public RecipeList()
+        {
+            InitializeComponent();
+        }
+
     }
 }
