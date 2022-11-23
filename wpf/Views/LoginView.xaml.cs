@@ -35,7 +35,10 @@ public partial class LoginView : UserControl
         LoginViewModel model = new LoginViewModel();
         model.Username = txtUsername.Text;
         model.Password = txtPassword.Password.ToString();
-
+        if(!checkExistUser(model))
+        {
+            ShowMessageBox_Click();
+        }
     }
 
     private bool checkExistUser(LoginViewModel loginViewModel)
@@ -45,6 +48,20 @@ public partial class LoginView : UserControl
         {
             return false;
         }
+
+        var mainWindow = new RecipeList();
+        var myWindow = Window.GetWindow(this);
+        myWindow.Close();
+        mainWindow.Show();
+
         return true;
+    }
+
+    private void ShowMessageBox_Click()
+    {
+        string msgtext = "Invalid login or password! Try again!";
+        string txt = "fail";
+        MessageBoxButton button = MessageBoxButton.OK;
+        MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
     }
 }

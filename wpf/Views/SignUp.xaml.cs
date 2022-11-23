@@ -54,9 +54,7 @@ namespace wpf.Views
             string msgtext = "Congratulations! Registration was successful!";
             string txt = "successful";
             MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
-
-          
+            MessageBoxResult result = MessageBox.Show(msgtext, txt, button);      
         }
     }
 }
