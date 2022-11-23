@@ -43,18 +43,34 @@ namespace wpf.Views
 
         private void AddToDB(RegisterViewModel registerViewModel)
         {
-            UserService servise = new UserService(_dbContext);
+            try
+            {
+                UserService servise = new UserService(_dbContext);
 
-            servise.AddUser(new User(registerViewModel.Username, registerViewModel.Username, registerViewModel.Password, " "));
-            ShowMessageBox_Click();
+                servise.AddUser(new User(registerViewModel.Username, registerViewModel.Username, registerViewModel.Password, " "));
+                ShowMessageBox_Click_Success();
+            }
+            catch
+            {
+                ShowMessageBox_Click_Eror();
+            }
+            
         }
 
-        private void ShowMessageBox_Click()
+        private void ShowMessageBox_Click_Success()
         {
             string msgtext = "Congratulations! Registration was successful!";
             string txt = "successful";
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxResult result = MessageBox.Show(msgtext, txt, button);      
+        }
+
+        private void ShowMessageBox_Click_Eror()
+        {
+            string msgtext = "User with such Username already exists!";
+            string txt = "error";
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
         }
     }
 }
