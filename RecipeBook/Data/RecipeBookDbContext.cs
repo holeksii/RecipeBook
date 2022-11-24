@@ -10,4 +10,11 @@ public class RecipeBookDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Database=RecipeBookDb;Username=postgres;Password=4");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>()
+            .HasIndex(p => p.Username)
+            .IsUnique(true);
+    }
 }
