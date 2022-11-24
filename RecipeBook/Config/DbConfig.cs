@@ -6,7 +6,7 @@ public class DbConfig
 {
     private static RecipeBookDbContext _dbContext = new RecipeBookDbContext();
 
-    public RecipeBookDbContext GetDbContexzt()
+    public static RecipeBookDbContext GetDbContext()
     {
         return _dbContext;
     }

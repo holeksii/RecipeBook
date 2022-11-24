@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RecipeBook.Models;
+using RecipeBook.Services;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
 
-namespace wpf
+using static RecipeBook.Config.DbConfig;
+
+namespace wpf;
+
+/// <summary>
+/// Interaction logic for RecipeList.xaml
+/// </summary>
+public partial class RecipeList : Window
 {
-    /// <summary>
-    /// Interaction logic for RecipeList.xaml
-    /// </summary>
-    public partial class RecipeList : Window
+    private RecipeService _recipeService;
+    private List<Recipe> _recipes;
+    
+    public RecipeList()
     {
-        public RecipeList()
+        InitializeComponent();
+        _recipeService = new RecipeService(GetDbContext());
+        _recipes = _recipeService.GetRecipes();
+        foreach (var recipe in _recipes)
         {
-            InitializeComponent();
+            RecipesGridXAML.Items.Add(recipe);
         }
-
     }
 }

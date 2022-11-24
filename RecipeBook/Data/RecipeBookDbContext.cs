@@ -9,7 +9,7 @@ public class RecipeBookDbContext : DbContext
     public DbSet<Recipe> Recipes { get; set; } = default!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=RecipeBookDb;Username=postgres;Password=1111");
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=RecipeBookDb;Username=postgres;Password=4");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
