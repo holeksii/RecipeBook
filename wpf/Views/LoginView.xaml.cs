@@ -1,4 +1,4 @@
-﻿
+﻿using RecipeBook.Models;
 using RecipeBook.Services;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,8 +38,8 @@ public partial class LoginView : UserControl
         {
             return false;
         }
-
-        var mainWindow = new RecipeList();
+        User user = _userService.GetUser(loginViewModel.Username, loginViewModel.Password);
+        var mainWindow = new UserView(user,user);
         var myWindow = Window.GetWindow(this);
         myWindow.Close();
         mainWindow.Show();

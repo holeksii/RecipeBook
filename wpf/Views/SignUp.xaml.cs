@@ -61,12 +61,13 @@ public partial class SignUp : UserControl
     private void AddToDB(RegisterViewModel registerViewModel)
     {
         try
-        {
-            _userService.AddUser(new User(registerViewModel.Username, registerViewModel.Username, registerViewModel.Password, " "));
+        {   
+            User user = new User(registerViewModel.Username, registerViewModel.Username, registerViewModel.Password, " ");
+            _userService.AddUser(user);
             
             ShowMessageBox_Click("Congratulations! Registration was successful!", "successful");
             
-            var mainWindow = new RecipeList();
+            var mainWindow = new RecipeList(user);
             var myWindow = Window.GetWindow(this);
             myWindow.Close();
             mainWindow.Show();
