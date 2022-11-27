@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace RecipeBook.Models;
 
 public class Recipe
@@ -29,6 +29,9 @@ public class Recipe
     public List<Ingredient> Ingredients { get; set; }
     public List<Like> Likes { get; set; }
     public List<Comment> Comments { get; set; }
+
+    [ForeignKey("UserId")]
+    public virtual User User { get; set; }
 
     public Recipe(string name, string imageUrl, string instructions, string category, int timeToCook)
     {
