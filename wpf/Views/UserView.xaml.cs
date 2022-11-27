@@ -39,14 +39,13 @@ public partial class UserView : Window
         mainWindow.Show();
     }
     private void userRecipesBtn_Click(object sender, RoutedEventArgs e){
-        RecipeService recipeService = new RecipeService(GetDbContext());
-        var mainWindow = new RecipeView(currentUser,recipeService.GetRecipe(1));
+        
+    }
+    private void addRecipeBtn_Click(object sender, RoutedEventArgs e){
+        var mainWindow = new AddRecipeView(currentUser);
         var myWindow = Window.GetWindow(this);
         myWindow.Close();
         mainWindow.Show();
-    }
-    private void addRecipeBtn_Click(object sender, RoutedEventArgs e){
-
     }
     private void confirmEmailBtn_Click(object sender, RoutedEventArgs e){
         if(ValidateEmail(txtEmailXAML.Text)){
@@ -76,12 +75,12 @@ public partial class UserView : Window
         MessageBoxButton button = MessageBoxButton.OK;
         MessageBoxResult result = MessageBox.Show(msgtext, txt, button);      
     }
-    private bool ValidateEmail(string userName)
+    private bool ValidateEmail(string email)
     {
         string pattern;
         pattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
         Regex regex = new Regex(pattern);
-        return regex.IsMatch(userName );
+        return regex.IsMatch(email);
     }
 
 }
