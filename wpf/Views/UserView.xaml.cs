@@ -30,6 +30,7 @@ public partial class UserView : Window
             emailChangePanel.Visibility = System.Windows.Visibility.Hidden;
             addPanel.Visibility = System.Windows.Visibility.Hidden;
         }
+        
     }
     private void allRecipesBtn_Click(object sender, RoutedEventArgs e){
         var mainWindow = new RecipeList(currentUser);
@@ -38,11 +39,13 @@ public partial class UserView : Window
         mainWindow.Show();
     }
     private void userRecipesBtn_Click(object sender, RoutedEventArgs e){
-
-
+        RecipeService recipeService = new RecipeService(GetDbContext());
+        var mainWindow = new RecipeView(currentUser,recipeService.GetRecipe(1));
+        var myWindow = Window.GetWindow(this);
+        myWindow.Close();
+        mainWindow.Show();
     }
     private void addRecipeBtn_Click(object sender, RoutedEventArgs e){
-
 
     }
     private void confirmEmailBtn_Click(object sender, RoutedEventArgs e){
@@ -62,9 +65,9 @@ public partial class UserView : Window
                 ShowMessageBox_Click("Something went wrong!", "error");
             }
         }
-                else 
+        else 
         {
-            ShowMessageBox_Click("Invalid Username", "error");
+            ShowMessageBox_Click("Invalid Email", "error");
             return;
         }
     }
