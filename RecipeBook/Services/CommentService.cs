@@ -12,16 +12,18 @@ public class CommentService
         _dbContext = dbContext;
     }
 
-    public Comment AddComment(Comment comment, Recipe recipe)
+    public Comment? AddComment(string text, long recipeId)
     {
-        Recipe? _recipe = _dbContext.Find<Recipe>(recipe.Id);
+        RecipeService recipeService = new RecipeService(_dbContext);
+        Recipe? _recipe = recipeService.GetRecipe(recipeId);
         if (_recipe != null)
         {
+            Comment comment = new Comment(text, DateTime.Now);
             _recipe.Comments.Add(comment);
-            _dbContext?.Recipes?.Update(_recipe);
-            _dbContext?.SaveChanges();
+            _dbContext.SaveChanges();
+            return comment;
         }
-        return comment;
+        return null;
     }
 
     public List<Comment>? GetComments(Recipe recipe)

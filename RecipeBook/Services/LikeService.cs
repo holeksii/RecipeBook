@@ -1,5 +1,4 @@
 ﻿namespace RecipeBook.Services;
-
 using RecipeBook.Data;
 using RecipeBook.Models;
 
@@ -10,6 +9,11 @@ public class LikeService
     public LikeService(RecipeBookDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+    public Like? GetLike(long userId, long recipeId){
+        return _dbContext.Set<Like>().FirstOrDefault(l => 
+            l.User.Id == userId && l.Recipe.Id == recipeId);
     }
 
     public Like? AddLikeForUser(long userId)
@@ -26,16 +30,19 @@ public class LikeService
         return null;
     }
 
-    public Like? AddLikeForRecipe(long recipeId)
+    public Like? AddLikeForRecipe(long recipeId, long userId)
     {
         Recipe? recipe = _dbContext.Find<Recipe>(recipeId);
         if (recipe != null)
         {
-            Like like = new(DateTime.Now);
-            recipe.Likes.Add(like);
-            _dbContext.Recipes.Update(recipe);
-            _dbContext.SaveChanges();
-            return like;
+            Like like = AddLikeForUser(userId);
+            if(like != null)
+            {
+                recipe.Likes.Add(like);
+                _dbContext.Recipes.Update(recipe);
+                _dbContext.SaveChanges();
+                return like;
+            }
         }
         return null;
     }

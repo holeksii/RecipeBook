@@ -2,7 +2,7 @@
 
 using RecipeBook.Data;
 using RecipeBook.Models;
-
+using Microsoft.EntityFrameworkCore;
 public class RecipeService
 {
     private RecipeBookDbContext _dbContext;
@@ -12,21 +12,24 @@ public class RecipeService
         _dbContext = dbContext;
     }
 
-    public Recipe AddRecipe(Recipe recipe)
+    public Recipe AddRecipe(Recipe recipe, long userId)
     {
-        _dbContext.Recipes.Add(recipe);
+        var user = _dbContext.Find<User>(userId);
+        user.Recipes.Add(recipe);
         _dbContext.SaveChanges();
         return recipe;
     }
 
     public List<Recipe>? GetRecipes()
     {
-        return _dbContext.Recipes.ToList();
+        return _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
+            r => r.Comments).ToList();
     }
 
     public Recipe? GetRecipe(long id)
     {
-        return _dbContext.Find<Recipe>(id);
+        return _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
+            r => r.Comments).FirstOrDefault(r => r.Id==id);
     }
 
     public Recipe? DeleteRecipe(Recipe recipe)
