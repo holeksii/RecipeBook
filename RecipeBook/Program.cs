@@ -67,6 +67,8 @@ cingerCookies.Ingredients = cingerCookiesIngridients;
 
 
 RecipeService recipesService = new(RecipeBook.Config.DbConfig.GetDbContext());
-recipesService.AddRecipe(pasta);
-recipesService.AddRecipe(pizza);
-recipesService.AddRecipe(cingerCookies);
+UserService userService = new(RecipeBook.Config.DbConfig.GetDbContext());
+userService.AddUser(new User("Liana","liana@gmail.com","1234Pass",""));
+recipesService.AddRecipe(pasta, 1);
+recipesService.AddRecipe(pizza, 1);
+recipesService.AddRecipe(cingerCookies, 1);
