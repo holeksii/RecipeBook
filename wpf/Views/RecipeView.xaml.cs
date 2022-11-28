@@ -25,7 +25,7 @@ public partial class RecipeView : Window
             RecipeNameXAML.Text = recipe.Name;
             UsernameXAML.Text = $" By {recipe.User.Username}";
             CategoryXAML.Text = recipe.Category;
-            TimeXAML.Text = $"Time to cook: {recipe.TimeToCook}";
+            TimeXAML.Text = $"Time to cook: {recipe.TimeToCook} minutes";
             likesNumberXAML.Text = $"{recipe.Likes.Count}";
             commentsNumberXAML.Text = $"{recipe.Comments.Count}";
             foreach (var i in recipe.Ingredients)
@@ -77,7 +77,9 @@ public partial class RecipeView : Window
                 ShowMessageBox_Click("Something went wrong!", "error");
             }
         }
-        ShowMessageBox_Click("You can not leave like here!", "error");
+        else{
+            ShowMessageBox_Click("You can not leave like here!", "error");
+        }
     }
     private void confirmCommentBtn_Click(object sender, RoutedEventArgs e){
         try
