@@ -67,7 +67,7 @@ public partial class SignUp : UserControl
             
             ShowMessageBox_Click("Congratulations! Registration was successful!", "successful");
             
-            var mainWindow = new RecipeList(user);
+            var mainWindow = new UserView(user,user);
             var myWindow = Window.GetWindow(this);
             myWindow.Close();
             mainWindow.Show();
@@ -84,15 +84,7 @@ public partial class SignUp : UserControl
         MessageBoxButton button = MessageBoxButton.OK;
         MessageBoxResult result = MessageBox.Show(msgtext, txt, button);      
     }
-
-    //private void ShowMessageBox_Click_Eror()
-    //{
-    //    string msgtext = "User with such Username already exists!";
-    //    string txt = "error";
-    //    MessageBoxButton button = MessageBoxButton.OK;
-    //    MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
-    //}
-
+    
     private bool ValidateUserName(string userName)
     {
         string pattern;

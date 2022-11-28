@@ -21,7 +21,7 @@ public partial class AddRecipeView : Window
         InitializeComponent();
     }
     private void allRecipesBtn_Click(object sender, RoutedEventArgs e){
-        var mainWindow = new RecipeList(currentUser);
+        var mainWindow = new RecipeListView(currentUser);
         var myWindow = Window.GetWindow(this);
         myWindow.Close();
         mainWindow.Show();
@@ -54,7 +54,7 @@ public partial class AddRecipeView : Window
             recipe.Ingredients=ingredients;
             _recipeService.AddRecipe(recipe,currentUser.Id);
             ShowMessageBox_Click("Recipe added", "success");
-            var mainWindow = new RecipeView(currentUser, recipe);
+            var mainWindow = new RecipeView(currentUser, recipe.Id);
             var myWindow = Window.GetWindow(this);
             myWindow.Close();
             mainWindow.Show();

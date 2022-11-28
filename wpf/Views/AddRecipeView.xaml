@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:wpf.Views"
         mc:Ignorable="d"
-        Title="New Recipe" Height="760" Width="1450">
+        Title="New Recipe" WindowState="Maximized">
 
         <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -42,6 +42,6 @@
         </Grid>
         <Button x:Name="addRecipeBtn" Margin="0,20,0,0"  Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Add recipe" Click="addRecipeBtn_Click"></Button>
         </StackPanel>
-        </ScrollViewer>
-        </materialDesign:DialogHost>
+    </ScrollViewer>
+    </materialDesign:DialogHost>
 </Window>

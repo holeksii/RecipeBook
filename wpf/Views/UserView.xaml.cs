@@ -33,13 +33,16 @@ public partial class UserView : Window
         
     }
     private void allRecipesBtn_Click(object sender, RoutedEventArgs e){
-        var mainWindow = new RecipeList(currentUser);
+        var mainWindow = new RecipeListView(currentUser);
         var myWindow = Window.GetWindow(this);
         myWindow.Close();
         mainWindow.Show();
     }
     private void userRecipesBtn_Click(object sender, RoutedEventArgs e){
-        
+        var mainWindow = new RecipeListView(currentUser,user);
+        var myWindow = Window.GetWindow(this);
+        myWindow.Close();
+        mainWindow.Show();
     }
     private void addRecipeBtn_Click(object sender, RoutedEventArgs e){
         var mainWindow = new AddRecipeView(currentUser);

@@ -12,33 +12,38 @@ public partial class RecipeView : Window
     private LikeService _likeService;
     private CommentService _commentService;
     private User currentUser;
-    private Recipe recipe;
-    public RecipeView(User cu, Recipe r)
+    private Recipe? recipe;
+    public RecipeView(User cu, long recipeId)
     {
         InitializeComponent();
-        currentUser = cu;
-        recipe=r;
-        _recipeService = new RecipeService(GetDbContext());
-        _commentService = new CommentService(GetDbContext());
-        _likeService = new LikeService(GetDbContext());
-        RecipeNameXAML.Text = recipe.Name;
-        UsernameXAML.Text = $" By {recipe.User.Username}";
-        CategoryXAML.Text = recipe.Category;
-        TimeXAML.Text = $"Time to cook: {recipe.TimeToCook}";
-        likesNumberXAML.Text = $"{recipe.Likes.Count}";
-        commentsNumberXAML.Text = $"{recipe.Comments.Count}";
-        foreach (var i in recipe.Ingredients)
-        {
-            IngredientsGridXAML.Items.Add(i);
+        try{
+            currentUser = cu;
+            _recipeService = new RecipeService(GetDbContext());
+            _commentService = new CommentService(GetDbContext());
+            _likeService = new LikeService(GetDbContext());
+            recipe = _recipeService.GetRecipe(recipeId);
+            RecipeNameXAML.Text = recipe.Name;
+            UsernameXAML.Text = $" By {recipe.User.Username}";
+            CategoryXAML.Text = recipe.Category;
+            TimeXAML.Text = $"Time to cook: {recipe.TimeToCook}";
+            likesNumberXAML.Text = $"{recipe.Likes.Count}";
+            commentsNumberXAML.Text = $"{recipe.Comments.Count}";
+            foreach (var i in recipe.Ingredients)
+            {
+                IngredientsGridXAML.Items.Add(i);
+            }
+            foreach (var c in recipe.Comments)
+            {
+                CommentsGridXAML.Items.Add(c);
+            }
+            InstructionsXAML.Text = recipe.Instructions;
         }
-        foreach (var c in recipe.Comments)
-        {
-            CommentsGridXAML.Items.Add(c);
+        catch(Exception ex){
+
         }
-        InstructionsXAML.Text = recipe.Instructions;
     }
     private void allRecipesBtn_Click(object sender, RoutedEventArgs e){
-        var mainWindow = new RecipeList(currentUser);
+        var mainWindow = new RecipeListView(currentUser);
         var myWindow = Window.GetWindow(this);
         myWindow.Close();
         mainWindow.Show();
@@ -62,7 +67,7 @@ public partial class RecipeView : Window
             {
                 _likeService.AddLikeForRecipe(recipe.Id,currentUser.Id);
                 ShowMessageBox_Click("Thanks for leaving like here!", "successful");
-                var mainWindow = new RecipeView(currentUser, recipe);
+                var mainWindow = new RecipeView(currentUser, recipe.Id);
                 var myWindow = Window.GetWindow(this);
                 myWindow.Close();
                 mainWindow.Show();
@@ -79,7 +84,7 @@ public partial class RecipeView : Window
         {
             _commentService.AddComment(txtCommentXAML.Text, recipe.Id);
             ShowMessageBox_Click("Congratulations! Your comment was saved!", "successful");
-            var mainWindow = new RecipeView(currentUser,recipe);
+            var mainWindow = new RecipeView(currentUser,recipe.Id);
             var myWindow = Window.GetWindow(this);
             myWindow.Close();
             mainWindow.Show();
