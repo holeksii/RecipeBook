@@ -22,8 +22,9 @@ public class LikeService
         if (user != null)
         {
             Like like = new(DateTime.Now);
+            _dbContext.Users.Remove(user);
             user.Likes.Add(like);
-            _dbContext.Users.Update(user);
+            _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return like;
         }
@@ -38,8 +39,9 @@ public class LikeService
             Like like = AddLikeForUser(userId);
             if(like != null)
             {
+                _dbContext.Recipes.Remove(recipe);
                 recipe.Likes.Add(like);
-                _dbContext.Recipes.Update(recipe);
+                _dbContext.Recipes.Add(recipe);
                 _dbContext.SaveChanges();
                 return like;
             }

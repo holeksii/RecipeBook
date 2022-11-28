@@ -1,5 +1,5 @@
 ﻿namespace RecipeBook.Services;
-
+using System.Collections.Generic;
 using RecipeBook.Data;
 using RecipeBook.Models;
 
@@ -20,7 +20,8 @@ public class CommentService
         {
             Comment comment = new Comment(text, DateTime.Now);
             _recipe.Comments.Add(comment);
-            _dbContext.SaveChanges();
+            _dbContext.Recipes.Remove(_recipe);
+            _dbContext.Recipes.Add(_recipe);
             return comment;
         }
         return null;

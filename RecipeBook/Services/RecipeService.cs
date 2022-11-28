@@ -25,11 +25,15 @@ public class RecipeService
         return _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
             r => r.Comments).ToList();
     }
-
+    public List<Recipe>? GetRecipes(long userId)
+    {
+        return _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
+            r => r.Comments).Where(r => r.User.Id==userId).ToList();
+    }
     public Recipe? GetRecipe(long id)
     {
         return _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
-            r => r.Comments).FirstOrDefault(r => r.Id==id);
+            r => r.Comments).Include(r=>r.User).FirstOrDefault(r => r.Id==id);
     }
 
     public Recipe? DeleteRecipe(Recipe recipe)
