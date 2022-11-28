@@ -1,5 +1,7 @@
 ﻿namespace RecipeBook.Services;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System;
 using RecipeBook.Data;
 using RecipeBook.Models;
 
@@ -14,14 +16,13 @@ public class CommentService
 
     public Comment? AddComment(string text, long recipeId)
     {
-        RecipeService recipeService = new RecipeService(_dbContext);
-        Recipe? _recipe = recipeService.GetRecipe(recipeId);
-        if (_recipe != null)
+        if (_dbContext.Find<Recipe>(recipeId) != null)
         {
-            Comment comment = new Comment(text, DateTime.Now);
-            _recipe.Comments.Add(comment);
-            _dbContext.Recipes.Remove(_recipe);
-            _dbContext.Recipes.Add(_recipe);
+            Comment comment = new Comment(text, DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc));
+            _dbContext.Recipes.Include(r => r.Ingredients).Include(r => r.Likes).Include(
+                r => r.Comments).Include(r=>r.User).FirstOrDefault(
+                    r => r.Id==recipeId).Comments.Add(comment);
+            _dbContext.SaveChanges();
             return comment;
         }
         return null;

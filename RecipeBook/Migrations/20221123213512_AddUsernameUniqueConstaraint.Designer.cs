@@ -12,14 +12,14 @@ using RecipeBook.Data;
 namespace RecipeBook.Migrations
 {
     [DbContext(typeof(RecipeBookDbContext))]
-    [Migration("20221020094548_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221123213512_AddUsernameUniqueConstaraint")]
+    partial class AddUsernameUniqueConstaraint
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -163,6 +163,9 @@ namespace RecipeBook.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

@@ -16,16 +16,13 @@ public class LikeService
             l.User.Id == userId && l.Recipe.Id == recipeId);
     }
 
-    public Like? AddLikeForUser(long userId)
+    private Like? AddLikeForUser(long userId)
     {
         User? user = _dbContext.Find<User>(userId);
         if (user != null)
         {
-            Like like = new(DateTime.Now);
-            _dbContext.Users.Remove(user);
+            Like like = new(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc));
             user.Likes.Add(like);
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
             return like;
         }
         return null;
@@ -39,9 +36,7 @@ public class LikeService
             Like like = AddLikeForUser(userId);
             if(like != null)
             {
-                _dbContext.Recipes.Remove(recipe);
                 recipe.Likes.Add(like);
-                _dbContext.Recipes.Add(recipe);
                 _dbContext.SaveChanges();
                 return like;
             }

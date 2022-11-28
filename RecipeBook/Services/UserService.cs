@@ -2,7 +2,7 @@ namespace RecipeBook.Services;
 
 using RecipeBook.Data;
 using RecipeBook.Models;
-
+using Microsoft.EntityFrameworkCore;
 public class UserService
 {
     private RecipeBookDbContext _dbContext;
@@ -26,8 +26,15 @@ public class UserService
 
     public User? GetUser(long id)
     {
-        return _dbContext.Find<User>(id);
+        return _dbContext.Users.Include(u => u.Recipes).Include(
+            r => r.Likes).FirstOrDefault(u => u.Id==id);
     }
+    public User? GetUser(string usrName, string password)
+    {
+        return _dbContext.Users.Include(u => u.Recipes).Include(
+            r => r.Likes).FirstOrDefault(u => u.Username == usrName && u.Password == password);
+    }
+
 
     public User? DeleteUser(User user)
     {
